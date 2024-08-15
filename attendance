@@ -2,21 +2,28 @@ import csv
 import datetime
 x = datetime.datetime.now()
 
-names= ['efuyaui', 'wejhassd', 'ishdfjhasa', 'sauiy', '2qweuiey']
+names = ['sarthak', 'uttkarsh', 'rohan', 'ravi', 'sahil','alok'] #list of registered students
+sort=sorted(names)
+pr = ['sarthak', 'rohan', 'alok'] #list of recognised students
 l=[]
 for i in range (len(names)):
-    l.append([names[i],"Present",(x.strftime("%H:%M %p"))])
-print(l)
-
+    if names[i] in pr:
+        l.append([i+1,"",sort[i],"","Yes"]) 
+    else:
+        l.append([i+1,"",sort[i],"","No"])
+# print(l)
+d=x.strftime("%d/%b/%Y")
 def add(): 
     rows =l
     filename = 'att.csv'
 
     with open(filename, 'a+', newline='') as csvfile:
         csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        csvwriter.writerows([[x.strftime("%x, %A")]])
+        csvwriter.writerows([[" ",f"Date:  {d}"]])
+        csvwriter.writerows([["Sr. no.","","Names","","Presence"]])
+        csvwriter.writerows("\n")
         csvwriter.writerows(rows)
         csvwriter.writerows("\n")
         
-#print(f"Data has been written to {filename}")
+print(f"Data has been written to {filename}")
 add()
